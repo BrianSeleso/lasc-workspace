@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // No login: anyone with the app link can read and write.
+    match /tasks/{id}    { allow read, write: if true; }
+    match /meetings/{id} { allow read, write: if true; }
+    match /tracker/{id}  { allow read, write: if true; }
+    match /{other=**}    { allow read, write: if false; }
+  }
+}
